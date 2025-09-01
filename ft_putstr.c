@@ -1,26 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_putstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mkeerewe <mkeerewe@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/31 22:15:11 by mkeerewe          #+#    #+#             */
-/*   Updated: 2025/09/01 15:47:49 by mkeerewe         ###   ########.fr       */
+/*   Created: 2025/08/19 16:42:45 by mkeerewe          #+#    #+#             */
+/*   Updated: 2025/09/01 15:19:29 by mkeerewe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#include "ft_printf.h"
 
-# include <stdarg.h>
-# include <unistd.h>
-# include "libft/libft.h"
+int	ft_putstr(char *s)
+{
+	int	i;
 
-int		ft_putchar(char c);
-int		ft_putnbr(int n, int ret);
-int		ft_putstr(char *s);
-int		ft_puthex(int nb, int cap, int ret);
-int		ft_printf(const char *str, ...);
-
-#endif
+	i = 0;
+	while (s[i] != '\0')
+	{
+		ft_putchar(s[i]);
+		i++;
+	}
+	return (i);
+}
