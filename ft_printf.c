@@ -6,33 +6,36 @@
 /*   By: mkeerewe <mkeerewe@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/30 19:32:27 by mkeerewe          #+#    #+#             */
-/*   Updated: 2025/09/01 15:48:09 by mkeerewe         ###   ########.fr       */
+/*   Updated: 2025/09/02 17:35:45 by mkeerewe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_format(const char *str, va_list args, int ret, int i)
+static int	ft_format(const char *str, va_list *args, int i)
 {
+	int	ret;
+
+	ret = 0;
 	if (str[i] == '%')
-		ret += ft_putchar('%');
+		ret = ft_putchar('%');
 	else if (str[i] == 'c')
-		ret += ft_putchar(va_arg(args, int));
+		ret = ft_putchar(va_arg(*args, int));
 	else if (str[i] == 's')
-		ret += ft_putstr(va_arg(args, void *));
+		ret = ft_putstr(va_arg(*args, char *));
 	else if (str[i] == 'p')
 	{
-		write(1, "0x", 2);
-		ret += ft_puthex(va_arg(args, int), 0, 0) + 2;
+		write(1, "0x1", 3);
+		ret = ft_puthex(va_arg(*args, int), 0, 0) + 3;
 	}
 	else if (str[i] == 'd' || str[i] == 'i')
-		ret += ft_putnbr(va_arg(args, int), 0);
+		ret = ft_putnbr(va_arg(*args, int), 0);
 	else if (str[i] == 'u')
-		ret += ft_putnbr(va_arg(args, unsigned int), 0);
+		ret = ft_putuint(va_arg(*args, unsigned int), 0);
 	else if (str[i] == 'x')
-		ret += ft_puthex(va_arg(args, int), 0, 0);
+		ret = ft_puthex(va_arg(*args, int), 0, 0);
 	else if (str[i] == 'X')
-		ret += ft_puthex(va_arg(args, int), 1, 0);
+		ret = ft_puthex(va_arg(*args, int), 1, 0);
 	return (ret);
 }
 
@@ -50,7 +53,7 @@ int	ft_printf(const char *str, ...)
 		if (str[i] == '%')
 		{
 			i++;
-			ret += ft_format(str, args, ret, i);
+			ret += ft_format(str, &args, i);
 		}
 		else
 		{

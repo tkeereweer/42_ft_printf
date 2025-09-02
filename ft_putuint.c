@@ -1,27 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_putuint.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mkeerewe <mkeerewe@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/31 22:15:11 by mkeerewe          #+#    #+#             */
-/*   Updated: 2025/09/02 17:33:27 by mkeerewe         ###   ########.fr       */
+/*   Created: 2025/08/19 16:42:40 by mkeerewe          #+#    #+#             */
+/*   Updated: 2025/09/02 17:32:56 by mkeerewe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#include "ft_printf.h"
 
-# include <stdarg.h>
-# include <unistd.h>
-# include "libft/libft.h"
+int	ft_putuint(unsigned int n, int ret)
+{
+	char			c;
 
-int		ft_putchar(char c);
-int		ft_putnbr(int n, int ret);
-int		ft_putuint(unsigned int n, int ret);
-int		ft_putstr(char *s);
-int		ft_puthex(int nb, int cap, int ret);
-int		ft_printf(const char *str, ...);
-
-#endif
+	if (n < 10)
+	{
+		c = n + '0';
+		ret += ft_putchar(c);
+	}
+	else
+	{
+		ret = ft_putnbr(n / 10, ret);
+		ret = ft_putnbr(n % 10, ret);
+	}
+	return (ret);
+}
