@@ -6,7 +6,7 @@
 /*   By: mkeerewe <mkeerewe@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/30 19:32:27 by mkeerewe          #+#    #+#             */
-/*   Updated: 2025/09/02 17:35:45 by mkeerewe         ###   ########.fr       */
+/*   Updated: 2025/09/02 22:55:52 by mkeerewe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,7 @@ static int	ft_format(const char *str, va_list *args, int i)
 	else if (str[i] == 's')
 		ret = ft_putstr(va_arg(*args, char *));
 	else if (str[i] == 'p')
-	{
-		write(1, "0x1", 3);
-		ret = ft_puthex(va_arg(*args, int), 0, 0) + 3;
-	}
+		ret = ft_putptr(va_arg(*args, void *));
 	else if (str[i] == 'd' || str[i] == 'i')
 		ret = ft_putnbr(va_arg(*args, int), 0);
 	else if (str[i] == 'u')
@@ -65,19 +62,3 @@ int	ft_printf(const char *str, ...)
 	va_end(args);
 	return (ret);
 }
-
-// int	main(void)
-// {
-// 	int	nb;
-// 	int	*ptr;
-
-// 	nb = 42;
-// 	ptr = &nb;
-// 	ft_printf("%i\n", nb);
-// 	ft_printf("%d\n", nb);
-// 	ft_printf("%p\n", ptr);
-// 	ft_printf("%x\n", nb);
-// 	ft_printf("%X\n", nb);
-// 	ft_printf("Hello World!\n");
-// 	return (0);
-// }

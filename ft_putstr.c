@@ -6,7 +6,7 @@
 /*   By: mkeerewe <mkeerewe@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 16:42:45 by mkeerewe          #+#    #+#             */
-/*   Updated: 2025/09/01 15:19:29 by mkeerewe         ###   ########.fr       */
+/*   Updated: 2025/09/02 17:47:38 by mkeerewe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,14 @@
 
 int	ft_putstr(char *s)
 {
-	int	i;
-
-	i = 0;
-	while (s[i] != '\0')
+	if (s != (void *) 0)
 	{
-		ft_putchar(s[i]);
-		i++;
+		write(1, s, ft_strlen(s));
+		return (ft_strlen(s));
 	}
-	return (i);
+	else
+	{
+		write(1, "(null)", 6);
+		return (6);
+	}
 }

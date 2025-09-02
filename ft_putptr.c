@@ -1,31 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_puthex.c                                        :+:      :+:    :+:   */
+/*   ft_putptr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mkeerewe <mkeerewe@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/31 22:40:22 by mkeerewe          #+#    #+#             */
-/*   Updated: 2025/09/02 22:26:15 by mkeerewe         ###   ########.fr       */
+/*   Updated: 2025/09/02 22:58:21 by mkeerewe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_puthex(unsigned int n, int cap, int ret)
+static int	ft_putptrhex(unsigned long n, int ret)
 {
 	char	base[17];
 
-	if (cap == 0)
-		ft_strlcpy(base, "0123456789abcdef", 17);
-	else
-		ft_strlcpy(base, "0123456789ABCDEF", 17);
+	ft_strlcpy(base, "0123456789abcdef", 17);
 	if (n < 16)
 		ret += ft_putchar(base[n]);
 	else
 	{
-		ret = ft_puthex(n / 16, cap, ret);
-		ret = ft_puthex(n % 16, cap, ret);
+		ret = ft_putptrhex(n / 16, ret);
+		ret = ft_putptrhex(n % 16, ret);
 	}
 	return (ret);
+}
+
+int	ft_putptr(void *ptr)
+{
+	unsigned long	n;
+
+	if (ptr == (void *) 0)
+	{
+		write(1, "0x0", 3);
+		return (3);
+	}
+	n = (unsigned long) ptr;
+	write(1, "0x", 2);
+	return (ft_putptrhex(n, 0) + 2);
 }
