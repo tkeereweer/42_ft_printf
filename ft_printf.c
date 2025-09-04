@@ -6,7 +6,7 @@
 /*   By: mkeerewe <mkeerewe@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/30 19:32:27 by mkeerewe          #+#    #+#             */
-/*   Updated: 2025/09/04 10:22:43 by mkeerewe         ###   ########.fr       */
+/*   Updated: 2025/09/04 10:35:28 by mkeerewe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 static int	ft_is_spec(char c)
 {
-	if (c == '%' || c == 'c' || c == 's' || c == 'p' || c == 'd' || c == 'i' 
-		|| c == 'u' || c == 'x' ||  c == 'X')
+	if (c == '%' || c == 'c' || c == 's' || c == 'p' || c == 'd' || c == 'i'
+		|| c == 'u' || c == 'x' || c == 'X')
 	{
 		return (1);
 	}
@@ -40,7 +40,7 @@ static int	ft_getformat(const char *str, int i, t_format *format)
 	return (i);
 }
 
-static int	ft_putformat(const char *str, va_list *args, t_format *format, int i)
+static int	ft_print(const char *str, va_list *args, t_format *format, int i)
 {
 	int	ret;
 
@@ -80,13 +80,10 @@ int	ft_printf(const char *str, ...)
 		{
 			i++;
 			i = ft_getformat(str, i, &format);
-			ret += ft_putformat(str, &args, &format, i);
+			ret += ft_print(str, &args, &format, i);
 		}
 		else
-		{
-			write(1, &str[i], 1);
-			ret++;
-		}
+			ret += ft_putchar(str[i]);
 		i++;
 	}
 	va_end(args);

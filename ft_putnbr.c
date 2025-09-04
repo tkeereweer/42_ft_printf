@@ -6,7 +6,7 @@
 /*   By: mkeerewe <mkeerewe@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 16:42:40 by mkeerewe          #+#    #+#             */
-/*   Updated: 2025/09/03 19:09:27 by mkeerewe         ###   ########.fr       */
+/*   Updated: 2025/09/04 10:33:44 by mkeerewe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,5 +53,4 @@ int	ft_putnbr(int n, t_format *format)
 	}
 	else
 		return (ft_putnbr_helper(nb, 0));
-
 }
