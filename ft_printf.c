@@ -6,13 +6,41 @@
 /*   By: mkeerewe <mkeerewe@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/30 19:32:27 by mkeerewe          #+#    #+#             */
-/*   Updated: 2025/09/02 22:55:52 by mkeerewe         ###   ########.fr       */
+/*   Updated: 2025/09/04 10:22:43 by mkeerewe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static int	ft_format(const char *str, va_list *args, int i)
+static int	ft_is_spec(char c)
+{
+	if (c == '%' || c == 'c' || c == 's' || c == 'p' || c == 'd' || c == 'i' 
+		|| c == 'u' || c == 'x' ||  c == 'X')
+	{
+		return (1);
+	}
+	return (0);
+}
+
+static int	ft_getformat(const char *str, int i, t_format *format)
+{
+	format->ht = 0;
+	format->plus = 0;
+	format->space = 0;
+	while (ft_is_spec(str[i]) == 0)
+	{
+		if (str[i] == '#')
+			format->ht = 1;
+		else if (str[i] == ' ')
+			format->space = 1;
+		else if (str[i] == '+')
+			format->plus = 1;
+		i++;
+	}
+	return (i);
+}
+
+static int	ft_putformat(const char *str, va_list *args, t_format *format, int i)
 {
 	int	ret;
 
@@ -26,21 +54,22 @@ static int	ft_format(const char *str, va_list *args, int i)
 	else if (str[i] == 'p')
 		ret = ft_putptr(va_arg(*args, void *));
 	else if (str[i] == 'd' || str[i] == 'i')
-		ret = ft_putnbr(va_arg(*args, int), 0);
+		ret = ft_putnbr(va_arg(*args, int), format);
 	else if (str[i] == 'u')
 		ret = ft_putuint(va_arg(*args, unsigned int), 0);
 	else if (str[i] == 'x')
-		ret = ft_puthex(va_arg(*args, int), 0, 0);
+		ret = ft_puthex(va_arg(*args, int), 0, format);
 	else if (str[i] == 'X')
-		ret = ft_puthex(va_arg(*args, int), 1, 0);
+		ret = ft_puthex(va_arg(*args, int), 1, format);
 	return (ret);
 }
 
 int	ft_printf(const char *str, ...)
 {
-	va_list	args;
-	int		i;
-	int		ret;
+	va_list		args;
+	t_format	format;
+	int			i;
+	int			ret;
 
 	va_start(args, str);
 	i = 0;
@@ -50,7 +79,8 @@ int	ft_printf(const char *str, ...)
 		if (str[i] == '%')
 		{
 			i++;
-			ret += ft_format(str, &args, i);
+			i = ft_getformat(str, i, &format);
+			ret += ft_putformat(str, &args, &format, i);
 		}
 		else
 		{

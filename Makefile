@@ -26,6 +26,8 @@ $(NAME): $(LIBFT) $(OBJS)
 $(LIBFT):
 	make -C $(LIBFT_DIR)
 
+bonus: $(NAME)
+
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
 

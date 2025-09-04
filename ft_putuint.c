@@ -6,7 +6,7 @@
 /*   By: mkeerewe <mkeerewe@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 16:42:40 by mkeerewe          #+#    #+#             */
-/*   Updated: 2025/09/02 17:32:56 by mkeerewe         ###   ########.fr       */
+/*   Updated: 2025/09/03 19:17:15 by mkeerewe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ int	ft_putuint(unsigned int n, int ret)
 	}
 	else
 	{
-		ret = ft_putnbr(n / 10, ret);
-		ret = ft_putnbr(n % 10, ret);
+		ret = ft_putuint(n / 10, ret);
+		ret = ft_putuint(n % 10, ret);
 	}
 	return (ret);
 }
