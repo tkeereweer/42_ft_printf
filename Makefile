@@ -39,7 +39,7 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re bonus
 
 # cc -Wall -Wextra -Werror ft_printf.c ft_puthex_fd.c -L libft -l ft -o libftprintf
 # cc -Wall -Wextra -Werror -L. -Llibft -lftprintf -lft try_printf.c -o test
