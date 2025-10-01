@@ -1,42 +1,45 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putptr.c                                        :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mkeerewe <mkeerewe@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/31 22:40:22 by mkeerewe          #+#    #+#             */
-/*   Updated: 2025/09/30 11:00:58 by mkeerewe         ###   ########.fr       */
+/*   Created: 2025/10/01 13:48:20 by mkeerewe          #+#    #+#             */
+/*   Updated: 2025/10/01 13:49:17 by mkeerewe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static int	ft_putptrhex(unsigned long n, int ret)
+size_t	ft_strlen(const char *s)
 {
-	char	base[17];
+	size_t	i;
 
-	ft_strlcpy(base, "0123456789abcdef", 17);
-	if (n < 16)
-		ret += ft_putchar(base[n]);
-	else
+	i = 0;
+	while (s[i] != '\0')
 	{
-		ret = ft_putptrhex(n / 16, ret);
-		ret = ft_putptrhex(n % 16, ret);
+		i++;
 	}
-	return (ret);
+	return (i);
 }
 
-int	ft_putptr(void *ptr)
+size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 {
-	unsigned long	n;
+	size_t	len_src;
+	size_t	i;
 
-	if (ptr == (void *) 0)
+	len_src = ft_strlen(src);
+	i = 0;
+	if (dstsize == 0)
+		return (len_src);
+	while (src[i] != '\0' && i < dstsize - 1)
 	{
-		write(1, "(nil)", 5);
-		return (5);
+		dst[i] = src[i];
+		i++;
 	}
-	n = (unsigned long) ptr;
-	write(1, "0x", 2);
-	return (ft_putptrhex(n, 0) + 2);
+	dst[i] = '\0';
+	return (len_src);
 }
+
+

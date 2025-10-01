@@ -6,7 +6,7 @@
 /*   By: mkeerewe <mkeerewe@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/25 16:13:23 by mkeerewe          #+#    #+#             */
-/*   Updated: 2025/09/25 16:47:04 by mkeerewe         ###   ########.fr       */
+/*   Updated: 2025/10/01 14:02:18 by mkeerewe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 
 int	main(void)
 {
-	int	num;
-	int	small_int;
+	int				num;
+	int				small_int;
 	unsigned int	uint;
 
 	num = 42;
@@ -33,6 +33,8 @@ int	main(void)
 	ft_printf("--- %%p conversion ---\n");
 	ft_printf("This prints: %p\n", &num);
 	printf("This prints: %p\n", &num);
+	ft_printf("This prints NULL: %p\n", NULL);
+	printf("This prints NULL: %p\n", NULL);
 	ft_printf("--- %%d conversion ---\n");
 	ft_printf("This prints: %d\n", num);
 	printf("This prints: %d\n", num);
@@ -49,6 +51,8 @@ int	main(void)
 	ft_printf("--- %%x conversion ---\n");
 	ft_printf("This prints: %x\n", num);
 	printf("This prints: %x\n", num);
+	ft_printf("This prints: %x\n", 0);
+	printf("This prints: %x\n", 0);
 	ft_printf("--- %%X conversion ---\n");
 	ft_printf("This prints: %X\n", num);
 	printf("This prints: %X\n", num);
@@ -76,6 +80,7 @@ int	main(void)
 	// printf("This prints: %+ d\n", num);
 	ft_printf("This prints: % +i\n", num);
 	// printf("This prints: % +i\n", num);
+	ft_printf("%q", 'c');
 }
 
 // cc -Wall -Wextra -Werror -L. -lftprintf tests.c -o tests
