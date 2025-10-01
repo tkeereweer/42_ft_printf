@@ -6,7 +6,7 @@
 /*   By: mkeerewe <mkeerewe@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/25 16:13:23 by mkeerewe          #+#    #+#             */
-/*   Updated: 2025/10/01 14:02:18 by mkeerewe         ###   ########.fr       */
+/*   Updated: 2025/10/01 17:52:44 by mkeerewe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,6 @@ int	main(void)
 	// printf("This prints: %+ d\n", num);
 	ft_printf("This prints: % +i\n", num);
 	// printf("This prints: % +i\n", num);
-	ft_printf("%q", 'c');
 }
 
 // cc -Wall -Wextra -Werror -L. -lftprintf tests.c -o tests

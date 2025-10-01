@@ -6,7 +6,7 @@
 /*   By: mkeerewe <mkeerewe@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/01 13:48:20 by mkeerewe          #+#    #+#             */
-/*   Updated: 2025/10/01 13:49:17 by mkeerewe         ###   ########.fr       */
+/*   Updated: 2025/10/01 17:31:02 by mkeerewe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,5 +41,3 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 	dst[i] = '\0';
 	return (len_src);
 }
-
-
